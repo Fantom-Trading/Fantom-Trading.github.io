@@ -8,39 +8,38 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Fantom Chain — RPC/Chain ID, Gas, Bridging, Staking, DeFi, Security &amp; Troubleshooting (2026)</title>
-  <meta name="description" content="Fantom Chain guide (2026): what Fantom is, network details (RPC/Chain ID), gas token, wallets, bridging to Fantom, validators &amp; staking basics, DeFi basics, explorers, security checklist, common issues &amp; troubleshooting. Includes KPIs, runbook, and a deep FAQ.">
+  <title>Fantom Trading — Tokens, DEX/CEX, Fees, Risk, Security & Troubleshooting (2026)</title>
+  <meta name="description" content="Fantom Trading guide (2026): how trading FTM and Fantom tokens works (DEX vs CEX), fees (gas + maker/taker + slippage), liquidity & risk management, security checklist, and troubleshooting. Includes KPIs, runbook, and a deep FAQ.">
   <meta name="author" content="Crypto Finance Experts">
-  <link rel="canonical" href="https://fantom-chain.example.com/">
+  <link rel="canonical" href="https://fantom-trading.example.com/">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="fantom-ftm-logo.png">
 
   <!-- Open Graph -->
   <meta property="og:type" content="article">
-  <meta property="og:url" content="https://fantom-chain.example.com/">
-  <meta property="og:title" content="Fantom Chain — RPC/Chain ID, Gas, Bridging, Security &amp; Troubleshooting (2026)">
-  <meta property="og:description" content="Practical Fantom Chain guide: network setup, gas, bridging, explorers, safety checklist, and troubleshooting.">
+  <meta property="og:url" content="https://fantom-trading.example.com/">
+  <meta property="og:title" content="Fantom Trading — Fees, Risk, Security & Troubleshooting (2026)">
+  <meta property="og:description" content="Practical Fantom Trading guide: DEX vs CEX, real costs, risk management, and troubleshooting.">
   <meta property="og:image" content="Fantom-1.png">
 
   <!-- Twitter Card -->
   <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://fantom-chain.example.com/">
-  <meta property="twitter:title" content="Fantom Chain — Wallet Setup, Gas, Bridging, Security (2026)">
-  <meta property="twitter:description" content="Deep Fantom Chain guide: RPC/chain ID, explorers, bridging, staking basics, DeFi, and FAQs.">
+  <meta property="twitter:url" content="https://fantom-trading.example.com/">
+  <meta property="twitter:title" content="Fantom Trading — DEX/CEX, Fees, Safety (2026)">
+  <meta property="twitter:description" content="Deep Fantom Trading guide: costs, liquidity, security hygiene, and FAQs.">
   <meta property="twitter:image" content="Fantom-1.png">
 
   <style>
     :root{
-      /* Fantom-inspired blue/white theme */
-      --primary:#167DFF;        /* bright blue */
+      --primary:#167DFF;
       --primary-600:#0F66D1;
       --primary-700:#0B4FA3;
-      --accent:#22D3EE;         /* cyan accent */
+      --accent:#22D3EE;
 
-      --ink:#071021;            /* deep navy */
-      --muted:#475569;          /* slate-600 */
-      --muted-2:#64748B;        /* slate-500 */
+      --ink:#071021;
+      --muted:#475569;
+      --muted-2:#64748B;
 
       --bg:#F6FAFF;
       --panel:#FFFFFF;
@@ -145,7 +144,6 @@
       flex:0 0 auto;
     }
 
-    /* SINGLE CTA — centered, big, attractive */
     .cta-center{
       display:flex;
       justify-content:center;
@@ -192,7 +190,6 @@
       margin-top:1rem;
     }
 
-    /* HERO IMAGE — framed, clean */
     .hero-media{
       position:relative;
       border-radius:var(--radius-lg);
@@ -201,18 +198,8 @@
       box-shadow:var(--shadow);
       background:rgba(255,255,255,.75);
     }
-    .hero-media::before{
-      content:"";
-      display:block;
-      padding-top:56.25%; /* 16:9 */
-    }
-    .hero-img{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
+    .hero-media::before{content:"";display:block;padding-top:56.25%}
+    .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
 
     section.step-guide{padding: clamp(2rem,6vw,3.5rem) 0}
     .steps{display:grid; gap:var(--gap); grid-template-columns:1fr;}
@@ -258,11 +245,7 @@
 
     table{width:100%; border-collapse:collapse; overflow:hidden; border-radius:12px}
     th,td{padding:.9rem; border-bottom:1px solid var(--line)}
-    th{
-      background:rgba(22,125,255,.08);
-      color:#0B1220;
-      text-align:left
-    }
+    th{background:rgba(22,125,255,.08); color:#0B1220; text-align:left}
     tr.highlight{background:rgba(22,125,255,.05)}
     tr:hover{background:rgba(7,16,33,.02)}
 
@@ -302,14 +285,12 @@
       font-size:.9rem;
     }
 
-    /* SECONDARY IMAGE — do NOT stretch/crop */
     .content-media{
       width:100%;
       display:flex;
       align-items:center;
       justify-content:center;
       margin-top:14px;
-
       border-radius:var(--radius);
       border:1px solid var(--line);
       box-shadow:var(--shadow);
@@ -360,66 +341,65 @@
         <img class="brand-logo" src="fantom-ftm-logo.png" alt="Fantom logo">
         <div>
           <div class="muted" style="font-weight:950; letter-spacing:.2px;">Operational Guide</div>
-          <div class="muted-2" style="font-size:.95rem;">RPC/Chain ID • Gas • Bridging • Staking Basics • Security • Troubleshooting</div>
+          <div class="muted-2" style="font-size:.95rem;">Markets • DEX/CEX • Fees • Risk • Security • Troubleshooting</div>
         </div>
       </div>
 
-      <h1>Fantom Chain</h1>
+      <h1 id="fantom-trading">Fantom Trading</h1>
       <p class="lead">
-        This is a practical, security-first guide to <strong>Fantom Chain</strong>: how to set up the network in your wallet (RPC / Chain ID),
-        what you use for gas, how to bridge assets to Fantom, how staking works at a high level,
-        how to verify transactions on explorers, and how to troubleshoot the most common “missing funds / wrong network / token not showing” problems.
+        This is a practical, security-first guide to <strong>Fantom Trading</strong>: how traders buy/sell <strong>FTM</strong> and Fantom ecosystem tokens,
+        how to choose between <strong>CEX vs DEX</strong>, what you really pay (fees + slippage + gas),
+        how to manage liquidity and risk, and how to troubleshoot common “deposit not showing / wrong network / failed swap” problems.
       </p>
 
-      <!-- ONE CENTERED BUTTON -->
+      <!-- ONE CENTERED BUTTON (NO external link) -->
       <div class="cta-center">
-        <a href="https://fantom.foundation/" class="cta" aria-label="Open Fantom official site">
-          Open Fantom
+        <a href="#fantom-trading" class="cta" aria-label="Jump to Fantom Trading">
+          Fantom Trading
         </a>
       </div>
 
       <div class="note">
-        <strong>Quick rule:</strong> if you’re doing anything new on Fantom Chain (new wallet, new bridge, new dApp),
-        start with a small test transaction and verify it on the explorer.
+        <strong>Quick rule:</strong> confirm the correct network for deposits/withdrawals, verify token contracts, and start with small test transfers.
       </div>
     </div>
 
     <div class="hero-media" aria-hidden="true">
-      <img class="hero-img" src="Fantom-1.png" alt="Fantom Chain hero image">
+      <img class="hero-img" src="Fantom-1.png" alt="Fantom Trading hero image">
     </div>
   </div>
 </header>
 
 <section class="step-guide" aria-labelledby="how-works">
   <div class="container">
-    <h2 id="how-works">Fantom Chain Workflow: Add Network → Fund Gas → Bridge/Transfer → Use Apps → Verify</h2>
+    <h2 id="how-works">Fantom Trading Workflow: Pick Venue → Confirm Network → Size Liquidity → Execute → Verify → Secure</h2>
     <div class="steps" role="list">
       <article class="step" role="listitem">
         <div class="icon">①</div>
-        <h3>Add Fantom Chain network (RPC + Chain ID)</h3>
+        <h3>Pick venue (CEX or DEX)</h3>
         <p>
-          Configure Fantom in your wallet using official network details. Wrong chain selection is the #1 cause of confusion.
+          CEX is order-book trading; DEX is on-chain swaps. Choose based on liquidity, custody preferences, and operational complexity.
         </p>
       </article>
       <article class="step" role="listitem">
         <div class="icon">②</div>
-        <h3>Fund gas (FTM) before doing anything</h3>
+        <h3>Confirm network and asset format</h3>
         <p>
-          Keep FTM in your wallet to pay for transactions. Without gas, you can’t swap, approve, revoke, or fix mistakes.
+          Wrong network selection is the #1 cause of “missing deposits”. Always match chain and token standard.
         </p>
       </article>
       <article class="step" role="listitem">
         <div class="icon">③</div>
-        <h3>Bridge assets to Fantom Chain (test first)</h3>
+        <h3>Estimate real costs (fees + slippage + gas)</h3>
         <p>
-          Use reputable bridges, verify the destination chain, and start small to confirm your setup and token visibility.
+          On-chain trades include gas and slippage. Thin liquidity can cost more than any visible fee.
         </p>
       </article>
       <article class="step" role="listitem">
         <div class="icon">④</div>
-        <h3>Verify on explorer (source of truth)</h3>
+        <h3>Verify fills and balances (source of truth)</h3>
         <p>
-          Wallet UIs can lag. Use the Fantom explorer to verify tx status, token contracts, and balances.
+          On DEX, explorer is truth. On CEX, use trade history and deposit/withdraw status pages.
         </p>
       </article>
     </div>
@@ -429,66 +409,66 @@
 <main class="container" role="main">
 
   <section class="card toc" aria-label="Table of Contents">
-    <strong>On this page (Fantom Chain):</strong>
+    <strong>On this page (Fantom Trading):</strong>
     <ul>
-      <li><a href="#overview">Fantom Chain overview (what it is &amp; who it’s for)</a></li>
-      <li><a href="#network">Fantom Chain network details: RPC, chain ID, explorer</a></li>
-      <li><a href="#gas">Fantom Chain gas: what you pay fees with</a></li>
-      <li><a href="#bridge">How to bridge to Fantom Chain safely</a></li>
-      <li><a href="#staking">Fantom Chain staking basics (high level)</a></li>
-      <li><a href="#defi">Fantom Chain DeFi basics: swaps, approvals, risks</a></li>
-      <li><a href="#security">Fantom Chain security checklist</a></li>
-      <li><a href="#troubleshooting">Fantom Chain troubleshooting</a></li>
-      <li><a href="#sources">Authoritative sources &amp; references</a></li>
-      <li><a href="#faq">Fantom Chain FAQ (deep)</a></li>
+      <li><a href="#overview">Fantom trading overview (what it is & who it’s for)</a></li>
+      <li><a href="#network">Fantom network basics: chain ID, explorer, gas</a></li>
+      <li><a href="#gas">Trading costs: CEX fees vs DEX costs (slippage + gas)</a></li>
+      <li><a href="#bridge">How to move funds safely (deposits/withdrawals/bridging)</a></li>
+      <li><a href="#staking">Venue selection: CEX vs DEX (high level)</a></li>
+      <li><a href="#defi">Risk management: liquidity, spoofed tokens, approvals</a></li>
+      <li><a href="#security">Fantom trading security checklist</a></li>
+      <li><a href="#troubleshooting">Fantom trading troubleshooting</a></li>
+      <li><a href="#sources">Authoritative sources & references</a></li>
+      <li><a href="#faq">Fantom Trading FAQ (deep)</a></li>
     </ul>
   </section>
 
   <section class="card" id="overview">
-    <h2>Fantom Chain Overview: What Fantom Is (and Why People Use It)</h2>
+    <h2>Fantom Trading Overview: What “Trading Fantom” Means</h2>
     <p>
-      <strong>Fantom Chain</strong> is an EVM-compatible blockchain used for fast transactions, DeFi applications, and token transfers.
-      Most users interact with Fantom through EVM wallets (like MetaMask) and verify activity on Fantom explorers.
-      Operational success on Fantom comes down to correct network setup, gas management, and careful approval hygiene.
+      <strong>Fantom trading</strong> typically means buying/selling <strong>FTM</strong> and Fantom ecosystem tokens either:
+      (1) on centralized exchanges (CEX) using an order book, or (2) on decentralized exchanges (DEX) using on-chain swaps.
+      Operational success depends on network correctness, liquidity awareness, and security hygiene.
     </p>
 
     <div class="callout-grid" role="list">
       <div class="mini" role="listitem">
-        <h3>Best use-cases on Fantom Chain</h3>
+        <h3>Common trader goals</h3>
         <p class="muted">
-          Swaps, DeFi, NFT activity, and low-fee transfers with EVM tooling.
+          Enter/exit FTM positions, rotate into ecosystem tokens, and move between stablecoins and volatile assets.
         </p>
         <div class="kpi-badges">
-          <span>EVM compatible</span><span>Fast tx</span><span>Low fees</span>
+          <span>FTM</span><span>Stables</span><span>Ecosystem tokens</span>
         </div>
       </div>
 
       <div class="mini" role="listitem">
-        <h3>What to watch</h3>
+        <h3>Main operational risks</h3>
         <p class="muted">
-          Bridge risks, token spoofing, and approvals. Use verified token contracts and revoke stale allowances.
+          Wrong deposit network, spoofed token contracts, thin liquidity, and unsafe approvals on DEX.
         </p>
         <div class="kpi-badges">
-          <span>Bridge risk</span><span>Approvals</span><span>Verify contracts</span>
+          <span>Wrong network</span><span>Slippage</span><span>Fake tokens</span>
         </div>
       </div>
     </div>
 
     <div class="note">
-      <strong>Operational truth:</strong> “missing tokens” are usually a visibility problem (wrong chain, token not added, wrong contract),
-      not a blockchain problem. Verify on explorer first.
+      <strong>Operational truth:</strong> “I lost funds” is often “I used the wrong network or wrong token contract.”
+      Verify first, then act.
     </div>
 
     <div class="content-media">
-      <img class="content-img" src="fantm2.png" alt="Fantom Chain secondary image">
+      <img class="content-img" src="fantm2.png" alt="Fantom trading secondary image">
     </div>
   </section>
 
   <section class="card" id="network">
-    <h2>Fantom Chain Network Details: RPC, Chain ID, Currency, Explorer</h2>
+    <h2>Fantom Network Basics for Traders: Chain ID, Explorer, Gas Token</h2>
     <p>
-      Setting up <strong>Fantom Chain</strong> correctly in your wallet prevents most issues.
-      Fantom Opera (mainnet) is commonly configured with Chain ID <strong>250</strong>, currency <strong>FTM</strong>,
+      For on-chain trading, you must be on the correct Fantom network.
+      Fantom Opera (mainnet) is commonly configured with Chain ID <strong>250</strong>, gas token <strong>FTM</strong>,
       and explorer <strong>ftmscan.com</strong>.
     </p>
 
@@ -504,266 +484,273 @@
         <tr class="highlight">
           <td>Network name</td>
           <td>Fantom Opera</td>
-          <td>So you know you’re on the correct Fantom Chain</td>
+          <td>So you know you’re on the correct chain</td>
         </tr>
         <tr>
           <td>Chain ID</td>
           <td><span class="mono">250</span></td>
-          <td>Critical to prevent wrong-chain transactions</td>
+          <td>Prevents wrong-chain transactions</td>
         </tr>
         <tr>
-          <td>Currency (gas token)</td>
+          <td>Gas token</td>
           <td>FTM</td>
-          <td>Needed to pay fees on Fantom Chain</td>
+          <td>Needed for swaps, approvals, revokes</td>
         </tr>
         <tr>
           <td>Explorer</td>
           <td><span class="mono">https://ftmscan.com</span></td>
-          <td>Verification source of truth</td>
+          <td>On-chain source of truth</td>
         </tr>
       </tbody>
     </table>
 
     <div class="note">
-      <strong>Safety:</strong> use official Fantom docs or trusted registries (like Chainlist) for RPC endpoints and network settings.
+      <strong>Safety:</strong> use trusted registries (Chainlist) for network settings; avoid random “Add Network” popups.
     </div>
   </section>
 
   <section class="card" id="gas">
-    <h2>Fantom Chain Gas: What You Pay Transaction Fees With</h2>
+    <h2>Trading Costs on Fantom: CEX Fees vs DEX Costs (Gas + Slippage)</h2>
     <p>
-      On <strong>Fantom Chain</strong>, you pay transaction fees with <strong>FTM</strong>.
-      You need gas for approvals, swaps, transfers, bridging actions, and recovery steps (revokes, retries).
+      Trading costs depend on venue:
+      <strong>CEX</strong> typically charges maker/taker fees (and withdrawal fees),
+      while <strong>DEX</strong> costs are mostly <strong>gas + pool/router fees + slippage</strong>.
     </p>
     <ul>
-      <li><strong>Always keep a buffer:</strong> don’t spend your last FTM.</li>
-      <li><strong>Approvals cost gas:</strong> every token approval is a transaction.</li>
-      <li><strong>Recovery needs gas:</strong> revoking allowances and moving funds requires FTM.</li>
+      <li><strong>CEX:</strong> maker/taker fees, plus withdrawal fees and network selection risk.</li>
+      <li><strong>DEX:</strong> approvals cost gas, swaps cost gas, and slippage/price impact depends on liquidity depth.</li>
+      <li><strong>Hidden cost:</strong> thin liquidity can produce poor execution even when visible fees look low.</li>
     </ul>
 
     <div class="note">
-      <strong>Rule:</strong> if you’re bridging to Fantom, include extra FTM (or a plan to obtain it) so you can transact immediately.
+      <strong>Rule:</strong> if the price moves wildly during swap, don’t keep retrying—check liquidity and slippage assumptions.
     </div>
   </section>
 
   <section class="card" id="bridge">
-    <h2>How to Bridge to Fantom Chain Safely (Operational Steps)</h2>
+    <h2>Moving Funds Safely: Deposits, Withdrawals, and Bridging (Operational Steps)</h2>
     <ol>
-      <li><strong>Use a reputable bridge:</strong> prefer well-known providers and official links from Fantom ecosystem resources.</li>
-      <li><strong>Confirm destination chain:</strong> Fantom Opera (Chain ID 250).</li>
-      <li><strong>Test first:</strong> send a small amount and verify arrival on <span class="inline-code">ftmscan.com</span>.</li>
-      <li><strong>Add token correctly:</strong> use verified token contract addresses from explorers or official sources.</li>
-      <li><strong>Keep gas buffer:</strong> ensure you have FTM to transact on Fantom after bridging.</li>
+      <li><strong>Confirm the destination network:</strong> match chain and token standard (this prevents “missing deposit”).</li>
+      <li><strong>Test first:</strong> small transfer before sending size.</li>
+      <li><strong>On DEX:</strong> keep <strong>FTM</strong> for gas (approve + swap + revoke).</li>
+      <li><strong>On CEX:</strong> verify deposit address format and network, then verify status pages.</li>
+      <li><strong>If bridging:</strong> use reputable providers and verify arrival on the explorer.</li>
     </ol>
 
     <div class="note">
-      <strong>Most common bridge mistake:</strong> users bridge correctly but stay on Ethereum in their wallet, then think funds are missing.
+      <strong>Most common mistake:</strong> sending to the right address on the wrong network.
     </div>
   </section>
 
   <section class="card" id="staking">
-    <h2>Fantom Chain Staking Basics: Validators, Delegation, and Real-World Gotchas</h2>
+    <h2>CEX vs DEX for Fantom Trading (High Level): When Each Makes Sense</h2>
     <p>
-      <strong>Fantom staking</strong> (delegation to validators) is an on-chain mechanism where you lock/delegate FTM to help secure the network and earn rewards.
-      The operational risks are usually: validator reliability, lock/unlock rules, and UI confusion around claiming/unlocking.
+      Traders often use CEX for deep liquidity and order types, and DEX for on-chain access to long-tail tokens.
+      Operational differences matter: CEX is custody + account-based; DEX is wallet-based with approvals and contract risk.
     </p>
     <ul>
-      <li><strong>Validator selection matters:</strong> uptime and reputation are more important than headline yields.</li>
-      <li><strong>Locking rules:</strong> understand any lock periods and unlocking steps before you stake.</li>
-      <li><strong>Track net outcomes:</strong> fees, claim cadence, and lock time change real returns.</li>
+      <li><strong>CEX strengths:</strong> order book, limit orders, potentially deeper liquidity on majors.</li>
+      <li><strong>DEX strengths:</strong> on-chain execution, access to ecosystem tokens, self-custody.</li>
+      <li><strong>DEX risks:</strong> spoof tokens, approvals, slippage, smart contract risk.</li>
     </ul>
 
     <div class="note">
-      <strong>Best practice:</strong> delegate a small test amount first, confirm rewards behavior, then scale in.
+      <strong>Best practice:</strong> for new tokens, verify contract + liquidity before taking size.
     </div>
   </section>
 
   <section class="card" id="defi">
-    <h2>Fantom Chain DeFi Basics: Swaps, Approvals, and Risk Management</h2>
+    <h2>Risk Management: Liquidity, Spoofed Tokens, Approvals, and Execution Risk</h2>
     <p>
-      On <strong>Fantom Chain</strong>, DeFi usage typically involves token approvals and swaps.
-      The main avoidable risks are malicious approvals and interacting with fake token contracts.
+      Most trading losses that are preventable are operational: wrong network, wrong token contract, or poor liquidity execution.
+      Protect yourself with verification and sizing discipline.
     </p>
 
-    <table aria-label="DeFi hygiene on Fantom Chain">
+    <table aria-label="Trading hygiene on Fantom">
       <thead>
         <tr>
-          <th>Action</th>
-          <th>What it does</th>
-          <th>Common mistake</th>
+          <th>Risk</th>
+          <th>What it looks like</th>
+          <th>Mitigation</th>
         </tr>
       </thead>
       <tbody>
         <tr class="highlight">
-          <td>Approve token</td>
-          <td>Grants a contract permission to spend your token</td>
-          <td>Unlimited approvals to unknown contracts</td>
+          <td>Wrong token contract</td>
+          <td>Token appears “same name”, but different address</td>
+          <td>Verify contract on explorer + reputable listings</td>
         </tr>
         <tr>
-          <td>Swap</td>
-          <td>Trades token A for token B on a DEX</td>
-          <td>Swapping spoofed tokens or wrong contract addresses</td>
+          <td>Thin liquidity</td>
+          <td>Huge price impact, frequent failed swaps</td>
+          <td>Trade smaller, use stables routes, avoid illiquid pools</td>
+        </tr>
+        <tr>
+          <td>Unsafe approvals</td>
+          <td>Unlimited allowance to unknown router</td>
+          <td>Minimal approvals + revoke after use</td>
         </tr>
       </tbody>
     </table>
 
     <div class="note">
-      <strong>Rule:</strong> use verified token contracts (explorer) and revoke approvals you don’t need anymore.
+      <strong>Rule:</strong> if you can’t explain the route + liquidity, you’re guessing. Size accordingly.
     </div>
   </section>
 
   <section class="card" id="security">
-    <h2>Fantom Chain Security Checklist: High-Impact Habits</h2>
+    <h2>Fantom Trading Security Checklist: High-Impact Habits</h2>
     <ul>
-      <li><strong>Bookmark official sites:</strong> bridges, wallets, explorers.</li>
-      <li><strong>Verify token contracts:</strong> use explorers to confirm legitimacy.</li>
+      <li><strong>Verify token contracts:</strong> use explorer + reputable listings.</li>
+      <li><strong>Bookmark venues:</strong> avoid search ads and lookalike domains.</li>
       <li><strong>Use minimal approvals:</strong> avoid unlimited allowances when possible.</li>
-      <li><strong>Revoke stale allowances:</strong> periodically review approvals.</li>
-      <li><strong>Separate wallets:</strong> “vault” vs “daily use” wallet.</li>
-      <li><strong>Explorer-first mindset:</strong> wallet UI can lag; explorer is truth.</li>
+      <li><strong>Revoke stale allowances:</strong> review approvals periodically.</li>
+      <li><strong>Separate wallets:</strong> “vault” vs “trading wallet”.</li>
+      <li><strong>Confirm networks:</strong> deposits/withdrawals must match chain exactly.</li>
     </ul>
 
     <div class="note">
-      <strong>Most avoidable loss:</strong> phishing + approvals. Slow down and confirm domains and contracts.
+      <strong>Most avoidable loss:</strong> phishing + approvals + wrong network deposits.
     </div>
   </section>
 
   <section class="card" id="troubleshooting">
-    <h2>Fantom Chain Troubleshooting: Common Issues and Fixes</h2>
+    <h2>Fantom Trading Troubleshooting: Common Issues and Fixes</h2>
 
-    <h3>“My tokens are missing on Fantom Chain”</h3>
+    <h3>“Deposit/withdrawal not showing”</h3>
     <ul>
-      <li>Confirm you’re on <strong>Fantom Opera</strong> network in the wallet.</li>
-      <li>Check your address on <span class="inline-code">ftmscan.com</span> and confirm the token transfer exists.</li>
-      <li>Add the token manually only if you confirmed the contract address on the explorer.</li>
+      <li>Confirm the network selected on the exchange matches the chain used to send.</li>
+      <li>Check tx hash on the explorer; if it’s successful, it’s usually processing/UI delay.</li>
+      <li>Never resend blindly—verify state first.</li>
     </ul>
 
-    <h3>“Transaction failed / stuck / pending”</h3>
+    <h3>“Swap failed on DEX”</h3>
     <ul>
-      <li>Check current gas and network congestion; retry with sufficient gas.</li>
-      <li>Wallet RPC issues: switch RPC endpoints from trusted sources.</li>
-      <li>Explorer-first: if explorer says “success”, it’s usually UI caching.</li>
+      <li>Ensure sufficient <strong>FTM</strong> for gas (approval + swap).</li>
+      <li>Check liquidity and slippage assumptions; avoid raising slippage automatically.</li>
+      <li>Verify token contract address on explorer and reputable listings.</li>
     </ul>
 
-    <h3>“Bridge deposit shows success but balance is wrong”</h3>
+    <h3>“Balance looks wrong after trade”</h3>
     <ul>
-      <li>Verify the destination chain in the bridge history.</li>
-      <li>Confirm the token contract on Fantom explorer.</li>
-      <li>Reconnect wallet and refresh token lists; do not resend blindly.</li>
+      <li>On DEX: verify on <span class="inline-code">ftmscan.com</span>, then refresh/reconnect wallet.</li>
+      <li>On CEX: check trade history and funds in “spot” vs “funding” wallets.</li>
+      <li>Token not visible: add token using verified contract address only.</li>
     </ul>
 
     <div class="note">
-      <strong>Golden rule:</strong> if explorer shows “success”, your funds are almost never “gone”.
-      Fix chain/account/token visibility first.
+      <strong>Golden rule:</strong> if the explorer shows “success”, your funds are almost never “gone”.
+      Resolve visibility/network issues first.
     </div>
   </section>
 
   <section class="sources" id="sources" aria-labelledby="sources-title">
-    <h2 id="sources-title">Authoritative Sources &amp; References</h2>
-    <p>Use these official and high-quality references for Fantom Chain setup, verification, and security hygiene:</p>
+    <h2 id="sources-title">Authoritative Sources & References</h2>
+    <p>Use these reputable references for Fantom trading context, token verification, and security hygiene:</p>
 
-    <h3>Official Fantom</h3>
+    <h3>Market context & token verification (authoritative aggregators)</h3>
     <ul>
-      <li><a href="https://fantom.foundation/" target="_blank" rel="noopener nofollow">Fantom Foundation — Official site</a></li>
-      <li><a href="https://docs.fantom.foundation/" target="_blank" rel="noopener nofollow">Fantom Docs (network, tools, staking)</a></li>
+      <li><a href="https://coinmarketcap.com/currencies/fantom/" target="_blank" rel="noopener nofollow">CoinMarketCap — Fantom (FTM)</a></li>
+      <li><a href="https://www.coingecko.com/en/coins/fantom" target="_blank" rel="noopener nofollow">CoinGecko — Fantom (FTM)</a></li>
+      <li><a href="https://messari.io/asset/fantom" target="_blank" rel="noopener nofollow">Messari — Fantom research page</a></li>
     </ul>
 
-    <h3>Network settings &amp; explorers</h3>
+    <h3>On-chain verification</h3>
     <ul>
       <li><a href="https://ftmscan.com/" target="_blank" rel="noopener nofollow">FTMScan — Fantom Explorer</a></li>
       <li><a href="https://chainlist.org/chain/250" target="_blank" rel="noopener nofollow">Chainlist — Fantom (Chain ID 250)</a></li>
     </ul>
 
-    <h3>Security hygiene</h3>
+    <h3>Security hygiene (unique set)</h3>
     <ul>
-      <li><a href="https://ethereum.org/guides/how-to-revoke-token-access/" target="_blank" rel="noopener nofollow">Ethereum.org — Revoke token approvals</a></li>
-      <li><a href="https://revoke.cash/" target="_blank" rel="noopener nofollow">Revoke.cash — Allowance management</a></li>
-      <li><a href="https://blog.openzeppelin.com/" target="_blank" rel="noopener nofollow">OpenZeppelin — Smart contract security</a></li>
+      <li><a href="https://support.ledger.com/" target="_blank" rel="noopener nofollow">Ledger Support — security basics</a></li>
+      <li><a href="https://revoke.cash/" target="_blank" rel="noopener nofollow">Revoke.cash — allowance management</a></li>
+      <li><a href="https://www.cloudflare.com/learning/security/how-to-prevent-phishing/" target="_blank" rel="noopener nofollow">Cloudflare — phishing prevention</a></li>
     </ul>
 
     <div class="note">
-      <strong>Tip:</strong> for staking and validator info, prefer Fantom’s official staking resources and explorers rather than third-party lists.
+      <strong>Tip:</strong> if token address doesn’t match reputable listings, treat it as untrusted until proven otherwise.
     </div>
   </section>
 
   <section class="card faq-section" aria-labelledby="faq">
-    <h2 id="faq">Fantom Chain FAQ: The Most Asked Questions (2026)</h2>
+    <h2 id="faq">Fantom Trading FAQ: The Most Asked Questions (2026)</h2>
 
     <div class="faq-item">
       <button class="faq-button" aria-expanded="false" aria-controls="f1" id="b1">
-        <h3>What is Fantom Chain?</h3><span class="faq-plus">+</span>
+        <h3>What is Fantom trading?</h3><span class="faq-plus">+</span>
       </button>
       <div id="f1" class="faq-content" role="region" aria-labelledby="b1">
-        <p><strong>Fantom Chain</strong> is an EVM-compatible blockchain used for fast transactions and DeFi activity. Most users interact with it using EVM wallets and verify activity via FTMScan.</p>
+        <p><strong>Fantom trading</strong> is buying/selling FTM and ecosystem tokens via CEX (order book) or DEX (on-chain swaps). Costs and risks differ by venue.</p>
       </div>
     </div>
 
     <div class="faq-item">
       <button class="faq-button" aria-expanded="false" aria-controls="f2" id="b2">
-        <h3>What is Fantom chain ID?</h3><span class="faq-plus">+</span>
+        <h3>What’s cheaper: CEX or DEX for Fantom trades?</h3><span class="faq-plus">+</span>
       </button>
       <div id="f2" class="faq-content" role="region" aria-labelledby="b2">
-        <p>Fantom Opera mainnet is commonly configured with Chain ID <strong>250</strong>. Always confirm network settings with official docs or Chainlist.</p>
+        <p>CEX has visible maker/taker fees; DEX has gas + pool fees + slippage. Thin liquidity can make DEX execution expensive even if gas is low.</p>
       </div>
     </div>
 
     <div class="faq-item">
       <button class="faq-button" aria-expanded="false" aria-controls="f3" id="b3">
-        <h3>What token pays gas on Fantom Chain?</h3><span class="faq-plus">+</span>
+        <h3>What is Fantom chain ID?</h3><span class="faq-plus">+</span>
       </button>
       <div id="f3" class="faq-content" role="region" aria-labelledby="b3">
-        <p><strong>FTM</strong> pays gas on Fantom Chain. Keep a buffer for swaps, approvals, transfers, revokes, and troubleshooting actions.</p>
+        <p>Fantom Opera mainnet is commonly configured with Chain ID <strong>250</strong>. Confirm with trusted registries like Chainlist.</p>
       </div>
     </div>
 
     <div class="faq-item">
       <button class="faq-button" aria-expanded="false" aria-controls="f4" id="b4">
-        <h3>Which explorer should I use for Fantom Chain?</h3><span class="faq-plus">+</span>
+        <h3>Why do deposits go “missing”?</h3><span class="faq-plus">+</span>
       </button>
       <div id="f4" class="faq-content" role="region" aria-labelledby="b4">
-        <p>The main explorer is <strong>FTMScan</strong> (<span class="inline-code">ftmscan.com</span>). Use it to verify tx status, token contracts, and balances.</p>
+        <p>Most commonly: wrong network selected or wrong token format. Verify tx hash on explorer and match network exactly.</p>
       </div>
     </div>
 
     <div class="faq-item">
       <button class="faq-button" aria-expanded="false" aria-controls="f5" id="b5">
-        <h3>Why are my tokens missing after bridging to Fantom Chain?</h3><span class="faq-plus">+</span>
+        <h3>How do I verify a Fantom token contract?</h3><span class="faq-plus">+</span>
       </button>
       <div id="f5" class="faq-content" role="region" aria-labelledby="b5">
-        <p>Most common causes: wallet is on the wrong network, token isn’t added in the wallet UI, or you used the wrong token contract address. Verify on FTMScan first.</p>
+        <p>Cross-check the contract address on the explorer and reputable listings (CoinMarketCap/CoinGecko). Avoid random addresses.</p>
       </div>
     </div>
 
     <div class="faq-item">
       <button class="faq-button" aria-expanded="false" aria-controls="f6" id="b6">
-        <h3>What is the safest way to start using Fantom Chain?</h3><span class="faq-plus">+</span>
+        <h3>What should I do if a DEX swap fails?</h3><span class="faq-plus">+</span>
       </button>
       <div id="f6" class="faq-content" role="region" aria-labelledby="b6">
-        <p>Add Fantom network settings from official sources, fund a small amount of FTM for gas, do a small test transfer, and verify the result on the explorer before scaling up.</p>
+        <p>Confirm enough FTM for gas, verify token contract, check liquidity and slippage, then retry only after verifying state.</p>
       </div>
     </div>
 
     <div class="faq-item">
       <button class="faq-button" aria-expanded="false" aria-controls="f7" id="b7">
-        <h3>Can I revoke token approvals on Fantom Chain?</h3><span class="faq-plus">+</span>
+        <h3>Can I revoke approvals on Fantom?</h3><span class="faq-plus">+</span>
       </button>
       <div id="f7" class="faq-content" role="region" aria-labelledby="b7">
-        <p>Yes. Use an allowance tool like Revoke.cash while connected to Fantom Chain, and revoke approvals you no longer need.</p>
+        <p>Yes. Use an allowance tool like Revoke.cash while connected to Fantom to review and revoke allowances you don’t need anymore.</p>
       </div>
     </div>
 
     <div class="faq-item">
       <button class="faq-button" aria-expanded="false" aria-controls="f8" id="b8">
-        <h3>Is staking on Fantom Chain “safe”?</h3><span class="faq-plus">+</span>
+        <h3>Which explorer should I use for Fantom trades?</h3><span class="faq-plus">+</span>
       </button>
       <div id="f8" class="faq-content" role="region" aria-labelledby="b8">
-        <p>Staking risk depends on validator reliability, lock/unlock rules, and operational mistakes. Reduce risk by delegating a small test amount first, choosing reputable validators, and understanding unlock timing.</p>
+        <p>The main explorer is <strong>FTMScan</strong> (<span class="inline-code">ftmscan.com</span>) for verifying tx status, contracts, and balances.</p>
       </div>
     </div>
 
     <div class="faq-item">
       <button class="faq-button" aria-expanded="false" aria-controls="f9" id="b9">
-        <h3>My transaction shows success on FTMScan but wallet balance is wrong — what now?</h3><span class="faq-plus">+</span>
+        <h3>Explorer shows success but wallet UI is wrong — what now?</h3><span class="faq-plus">+</span>
       </button>
       <div id="f9" class="faq-content" role="region" aria-labelledby="b9">
         <p>This is usually wallet/RPC caching. Trust the explorer, reconnect your wallet, refresh token lists, or switch RPC endpoints from trusted sources.</p>
@@ -772,10 +759,10 @@
 
     <div class="faq-item">
       <button class="faq-button" aria-expanded="false" aria-controls="f10" id="b10">
-        <h3>What should I do before using a new dApp on Fantom Chain?</h3><span class="faq-plus">+</span>
+        <h3>What’s the safest way to start trading Fantom tokens?</h3><span class="faq-plus">+</span>
       </button>
       <div id="f10" class="faq-content" role="region" aria-labelledby="b10">
-        <p>Verify the domain, start with a small amount, use minimal approvals, confirm token contracts on the explorer, and keep gas buffers for revokes and retries.</p>
+        <p>Start with majors (FTM/stables), use small test transfers, verify contracts, avoid unknown links, and keep gas buffers for revokes and retries.</p>
       </div>
     </div>
 
@@ -784,11 +771,53 @@
 </main>
 
 <footer class="container" role="contentinfo" style="padding:2rem 0; border-top:1px solid var(--line); margin-top:2rem">
-  <p class="muted">© 2026 Fantom Chain Guide. Educational content with a security-first operational focus.</p>
+  <p class="muted">© 2026 Fantom Trading Guide. Educational content with a security-first operational focus.</p>
 </footer>
 
+<script>
+  // Accessible FAQ accordion
+  (function(){
+    const items = document.querySelectorAll('.faq-item');
+    items.forEach((item) => {
+      const btn = item.querySelector('.faq-button');
+      const panel = item.querySelector('.faq-content');
+      const plus = item.querySelector('.faq-plus');
 
+      if(!btn || !panel) return;
 
+      btn.addEventListener('click', () => {
+        const isOpen = btn.getAttribute('aria-expanded') === 'true';
 
+        // close all
+        items.forEach((it) => {
+          const b = it.querySelector('.faq-button');
+          const p = it.querySelector('.faq-content');
+          const s = it.querySelector('.faq-plus');
+          if(!b || !p) return;
+          b.setAttribute('aria-expanded', 'false');
+          p.style.maxHeight = '0px';
+          p.classList.remove('open');
+          if(s) s.textContent = '+';
+        });
 
-</body></html>
+        // open clicked if it was closed
+        if(!isOpen){
+          btn.setAttribute('aria-expanded', 'true');
+          panel.classList.add('open');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+          if(plus) plus.textContent = '–';
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        if(expanded){
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+        }
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
